@@ -24,7 +24,7 @@ class SimpleDateField extends TextField {
 		'locale' => "" //alternative locale for JS Calendar
 	);
 
-		
+
 
 	function __construct($name, $title = null, $value = null, $form = null, $config = array()) {
 		parent::__construct($name, $title, $value, $form);
@@ -40,7 +40,7 @@ class SimpleDateField extends TextField {
 		$this->setRightTitle($rightTitle);
 	}
 
-	function Field() {
+	function Field($options = array()) {
 
 		//GENERAL
 		Requirements::javascript(THIRDPARTY_DIR . '/jquery/jquery.js');
@@ -49,11 +49,11 @@ class SimpleDateField extends TextField {
 
 		//CALENDAR STUFF
 		if($this->getConfig('showcalendar')) {
-			
+
 			Requirements::css(THIRDPARTY_DIR . '/jquery-ui-themes/smoothness/jquery.ui.all.css');
 			Requirements::javascript(THIRDPARTY_DIR . '/jquery-ui/jquery.ui.core.js');
 			Requirements::javascript(THIRDPARTY_DIR . '/jquery-ui/jquery.ui.datepicker.js');
-			
+
 			// Include language files (if required)
 			$myLang = $this->getConfig("locale");
 			$lang = i18n::get_locale();
@@ -79,7 +79,7 @@ class SimpleDateField extends TextField {
 		//CUSTOM STUFF
 		$fieldID = $this->id();
 		//TO DO:::::: THIS DOES NOT APPEAR TO BE PROPER JSON !
-		
+
 		$settingsArray = array();
 		$jsConfigArray = self::convert_array_between_string_and_proper_value($this->getConfig(), false);
 		foreach($jsConfigArray as $key => $value) {
@@ -139,7 +139,7 @@ jQuery("#$fieldID").live(
 );
 JS;
 		}
-		Requirements :: customScript($jsFuncField, 'func_SimpleDateField'.$fieldID);		
+		Requirements :: customScript($jsFuncField, 'func_SimpleDateField'.$fieldID);
 		$html = parent::Field();
 		return $html;
 	}
@@ -318,7 +318,7 @@ class SimpleDateField_Controller extends Controller {
 		}
 		else {
 			$settings = array();
-		}		
+		}
 		return SimpleDateField::convert_to_fancy_date($rawInput, $settings);
 	}
 
@@ -344,7 +344,7 @@ class SimpleDateField_Editable extends EditableFormField {
 		return 'userforms/images/editabledatefield.png';
 	}
 
-	
+
 	function getFieldConfiguration() {
 		$fields = parent::getFieldConfiguration();
 		// eventually replace hard-coded "Fields"?
@@ -364,9 +364,9 @@ class SimpleDateField_Editable extends EditableFormField {
 				new TextField($baseName . "[CustomSettings][ExplanationForEnteringDates]", "Explanation for entering dates", $ExplanationForEnteringDates)
 			)
 		);
-		
+
 		$fields->merge($extraFields);
-		return $fields;		
+		return $fields;
 	}
 
 	public function getFormField() {
