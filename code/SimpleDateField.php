@@ -344,6 +344,9 @@ class SimpleDateField_Editable extends EditableFormField {
 		return 'userforms/images/editabledatefield.png';
 	}
 
+	public function canEdit($member = null) {
+		return true;
+	}
 
 	function getFieldConfiguration() {
 		$fields = parent::getFieldConfiguration();
@@ -354,7 +357,7 @@ class SimpleDateField_Editable extends EditableFormField {
 		$OnlyFutureDates = ($this->getSetting('OnlyFutureDates')) ? $this->getSetting('OnlyFutureDates') : '0';
 		$MonthBeforeDay = ($this->getSetting('MonthBeforeDay')) ? $this->getSetting('MonthBeforeDay') : '0';
 		$ExplanationForEnteringDates = ($this->getSetting('ExplanationForEnteringDates')) ? $this->getSetting('ExplanationForEnteringDates') : '';
-		$extraFields = new FieldSet(
+		$extraFields = new FieldList(
 			new FieldGroup(
 				_t('SimpleDateField_Editable.DATESETTINGS', 'Date Settings'),
 				new CheckboxField($baseName . "[CustomSettings][ShowCalendar]", "Show Calendar", $ShowCalendar),
