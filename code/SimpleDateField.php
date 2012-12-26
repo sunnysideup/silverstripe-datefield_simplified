@@ -268,7 +268,7 @@ JS;
 		}
 	}
 
-	public function convert_array_between_string_and_proper_value($input, $fromString = true) {
+	public static function convert_array_between_string_and_proper_value($input, $fromString = true) {
 		$array = array(
 			"false" => false,
 			"true" => true,
