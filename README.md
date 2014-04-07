@@ -1,15 +1,18 @@
-###############################################
-datefield_simplified -  a simple date field
-###############################################
+datefield simplified
+================================================================================
+
+a simple date field
+
 
 Developer
 -----------------------------------------------
 Nicolaas Francken [at] sunnysideup.co.nz
 
+
 Requirements
 -----------------------------------------------
-
 see composer.json
+
 
 Installation Instructions
 -----------------------------------------------
