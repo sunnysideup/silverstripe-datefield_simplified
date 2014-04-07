@@ -3,7 +3,7 @@
 	"type": "silverstripe-module",
 	"description": "simple date field",
 	"homepage": "http://www.silverstripe-webdevelopment.com",
-	"keywords": ["datefield_simplified", "silverstripe"],
+	"keywords": ["datefield_simplified", "silverstripe", "date field", "datefield"],
 	"license": "Sunny Side Up (BSD-3-Clause and CUSTOM)",
 	"authors":[
 		{
@@ -14,7 +14,9 @@
 		}
 	],
 	"require":{
-		"silverstripe/framework": "3.1"
+		"silverstripe/framework": "~3.1",
+		"silverstripe/cms": "~3.1",
+		"silverstripe/userforms": "2.0.2"
 	},
 	"extra": {
 		"installer-name": "datefield_simplified"
