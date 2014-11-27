@@ -10,11 +10,28 @@
 
 class SimpleDateField extends DateField {
 
+	/**
+	 * Americans should set this to TRUE.
+	 * For people who write
+	 * 10-Nov-2012, to mean 10 November, you an leave it as FALSE
+	 * For sites with customers from all over, you will have to tell them the
+	 * preferred format. You can use the placeholder value for this.
+	 *
+	 * @var Boolean
+	 */
 	private static $month_before_day = false;
 
-	private static $default_fancy_date_format = 'l j F Y';
+	/**
+	 * The PHP date function formatting for showing the final date.
+	 * @var String
+	 */
+	private static $default_fancy_date_format = 'D j F Y';
 
-	private static $example_value = '31 jan 2123';
+	/**
+	 * What would you like the place holder value to be?
+	 * @var String
+	 */
+	private static $placeholder_value = '31 jan 2123';
 
 	function __construct($name, $title = null, $value = null, $form = null, $config = array()) {
 		parent::__construct($name, $title, $value, $form);
@@ -27,7 +44,7 @@ class SimpleDateField extends DateField {
 		Requirements::javascript(THIRDPARTY_DIR . '/jquery/jquery.js');
 		Requirements::javascript("datefield_simplified/javascript/SimpleDateField.js");
 		$this->addExtraClass("simpledatefield");
-		$this->setAttribute("placeholder", $this->Config()->get("example_value"));
+		$this->setAttribute("placeholder", $this->Config()->get("placeholder_value"));
 		$html = parent::Field($options);
 		$fieldID = $this->id();
 		$url = Convert::raw2js(Director::absoluteBaseURL().Config::inst()->get("SimpleDateField_Controller", "url")."/ajaxvalidation/");
