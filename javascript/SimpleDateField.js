@@ -1,4 +1,9 @@
 
+jQuery(document).ready(
+	function() {
+		SimpleDateFieldAjaxValidation.init();
+	}
+);
 
 var SimpleDateFieldAjaxValidation = {
 
@@ -10,13 +15,20 @@ var SimpleDateFieldAjaxValidation = {
 
 	url: "",
 
-	setupField: function(id, url){
+	inputSelector: ".simpledatefield",
+
+	setURL: function(url) {
 		this.url = url;
+	},
+
+	init: function(){
 		if(this.includeKeyUp) {
-			jQuery("#"+id).on(
+			jQuery("body").on(
 				"keyup",
+				SimpleDateFieldAjaxValidation.inputSelector,
 				function() {
 					var value = jQuery(this).val();
+					var id = jQuery(this).attr("id");
 					if(value.length > 2) {
 						window.clearTimeout (SimpleDateFieldAjaxValidation.timer[id]);
 						SimpleDateFieldAjaxValidation.timer[id] = window.setTimeout(
@@ -29,9 +41,10 @@ var SimpleDateFieldAjaxValidation = {
 		}
 		jQuery("body").on(
 			"change",
-			"#"+id,
+			SimpleDateFieldAjaxValidation.inputSelector,
 			function() {
 				var value = jQuery(this).val();
+				var id = jQuery(this).attr("id");
 				if(value.length > 2) {
 					window.clearTimeout (SimpleDateFieldAjaxValidation.timer[id]);
 					SimpleDateFieldAjaxValidation.sendInput(id, value);

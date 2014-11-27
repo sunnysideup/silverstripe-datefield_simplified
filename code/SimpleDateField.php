@@ -48,7 +48,7 @@ class SimpleDateField extends DateField {
 		$html = parent::Field($options);
 		$fieldID = $this->id();
 		$url = Convert::raw2js(Director::absoluteBaseURL().Config::inst()->get("SimpleDateField_Controller", "url")."/ajaxvalidation/");
-		Requirements::customScript("SimpleDateFieldAjaxValidation.setupField('$fieldID', '$url');", 'func_SimpleDateField'.$fieldID);
+		Requirements::customScript("SimpleDateFieldAjaxValidation.setURL('$url');", 'func_SimpleDateField'.$fieldID);
 		return $html;
 	}
 
