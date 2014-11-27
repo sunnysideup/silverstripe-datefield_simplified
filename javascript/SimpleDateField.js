@@ -6,25 +6,30 @@ var SimpleDateFieldAjaxValidation = {
 
 	milliseconds: 1500,
 
+	includeKeyUp: false,
+
 	url: "",
 
 	setupField: function(id, url){
 		this.url = url;
-		jQuery("#"+id).on(
-			"keyup",
-			function() {
-				var value = jQuery(this).val();
-				if(value.length > 2) {
-					window.clearTimeout (SimpleDateFieldAjaxValidation.timer[id]);
-					SimpleDateFieldAjaxValidation.timer[id] = window.setTimeout(
-						function() {SimpleDateFieldAjaxValidation.sendInput(id, value);},
-						SimpleDateFieldAjaxValidation.milliseconds
-					);
+		if(this.includeKeyUp) {
+			jQuery("#"+id).on(
+				"keyup",
+				function() {
+					var value = jQuery(this).val();
+					if(value.length > 2) {
+						window.clearTimeout (SimpleDateFieldAjaxValidation.timer[id]);
+						SimpleDateFieldAjaxValidation.timer[id] = window.setTimeout(
+							function() {SimpleDateFieldAjaxValidation.sendInput(id, value);},
+							SimpleDateFieldAjaxValidation.milliseconds
+						);
+					}
 				}
-			}
-		);
-		jQuery("#"+id).on(
+			);
+		}
+		jQuery("body").on(
 			"change",
+			"#"+id,
 			function() {
 				var value = jQuery(this).val();
 				if(value.length > 2) {

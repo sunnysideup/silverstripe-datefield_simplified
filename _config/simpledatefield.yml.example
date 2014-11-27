@@ -1,0 +1,14 @@
+DateField:
+  config:
+    showcalendar: false
+    jslocale: null
+    dmyfields: false
+    dmyseparator: '&nbsp;<span class="separator">/</span>&nbsp;'
+    dmyplaceholders: true
+    dateformat: null
+    datavalueformat: yyyy-MM-dd
+    min: null
+    max: null
+SimpleDateField:
+  month_before_day: false
+  default_fancy_date_format: 'l j F Y'

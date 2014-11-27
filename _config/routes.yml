@@ -1,0 +1,7 @@
+---
+Name: simpledatefield
+After: '#adminroutes'
+---
+Director:
+  rules:
+    'formfields-simpledatefield//$Action/$Value': 'SimpleDateField_Controller'
