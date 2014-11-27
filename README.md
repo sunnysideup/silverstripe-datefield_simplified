@@ -1,7 +1,12 @@
 datefield simplified
 ================================================================================
 
-a simple date field
+A simple date field.  It does not add a calendar (use DateField for this),
+but you can type any date you like (e.g. today, yesterday, +2 weeks, 11/12/2014,11-23-2015, etc... )
+and it it likely to understand what you mean.
+
+This is great for dates that are not close to a particular default date (e.g. DOB) where using a calendar
+is more hassle than purpose.
 
 
 Developer
@@ -18,7 +23,7 @@ Installation Instructions
 -----------------------------------------------
 1. Find out how to add modules to SS and add module as per usual.
 
-2. Copy configurations from this module's _config.php file
-into mysite/_config.php file and edit settings as required.
-NB. the idea is not to edit the module at all, but instead customise
-it from your mysite folder, so that you can upgrade the module without redoing the settings.
+2. Review configs and add entries to mysite/_config/config.yml
+(or similar) as necessary.
+In the _config/ folder of this module
+you can usually find some examples of config options (if any).
