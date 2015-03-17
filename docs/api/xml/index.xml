@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index xmlns="http://xml.phpdox.net/src" basedir="/var/www/_modules/datefield_simplified/trunk">
+  <namespace name="">
+    <class name="SimpleDateField" src="code/SimpleDateField.php" xml="classes/SimpleDateField.xml"/>
+    <class name="SimpleDateField_Controller" src="code/SimpleDateField.php" xml="classes/SimpleDateField_Controller.xml"/>
+    <class name="SimpleDateField_Editable" src="code/SimpleDateField.php" xml="classes/SimpleDateField_Editable.xml"/>
+  </namespace>
+</index>
