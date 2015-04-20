@@ -48,7 +48,13 @@ class SimpleDateField extends DateField {
 		$html = parent::Field($options);
 		$fieldID = $this->id();
 		$url = Convert::raw2js(Director::absoluteBaseURL().Config::inst()->get("SimpleDateField_Controller", "url")."/ajaxvalidation/");
-		Requirements::customScript("SimpleDateFieldAjaxValidation.setURL('$url');", 'func_SimpleDateField'.$fieldID);
+		$objectID = $fieldID."_OBJECT";
+		Requirements::customScript("
+			var $objectID = new SimpleDateFieldAjaxValidationAPI('".$fieldID."');
+			$objectID.init();
+			$objectID.setVar('url', '$url');
+			",
+			'func_SimpleDateField'.$fieldID);
 		return $html;
 	}
 
@@ -227,18 +233,20 @@ class SimpleDateField_Editable extends EditableFormField {
 		}
 		if($this->getSetting('OnlyPastDates')) {
 			$field->setConfig("max", "today");
+			Config::inst()->update("SimpleDateField","placeholder_value", '31 jan 1974');
 		}
 		elseif($this->getSetting('OnlyFutureDates')) {
 			$field->setConfig("min", "today");
+			Config::inst()->update("SimpleDateField","placeholder_value", '31 jan 2023');
 		}
 		if($this->getSetting('MonthBeforeDay')) {
 			$field->setConfig("dateformat", 'l F j Y');
-			Config::inst()->set("SimpleDateField","default_fancy_date_format", 'l F j Y');
-			Config::inst()->set("SimpleDateField","month_before_day", true);
+			Config::inst()->update("SimpleDateField","default_fancy_date_format", 'l F j Y');
+			Config::inst()->update("SimpleDateField","month_before_day", true);
 		}
 		else {
-			Config::inst()->set("SimpleDateField","default_fancy_date_format", 'l j F Y');
-			Config::inst()->set("SimpleDateField","month_before_day", false);
+			Config::inst()->update("SimpleDateField","default_fancy_date_format", 'l j F Y');
+			Config::inst()->update("SimpleDateField","month_before_day", false);
 		}
 		if($this->getSetting('ExplanationForEnteringDates')) {
 			$field->setRightTitle($this->getSetting('ExplanationForEnteringDates'));
