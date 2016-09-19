@@ -3,8 +3,10 @@
     "type": "silverstripe-module",
     "description": "simple date field",
     "keywords": [
+        "Silverstripe-CMS",
+        "CMS",
+        "Silverstripe",
         "datefield_simplified",
-        "silverstripe",
         "date field",
         "datefield",
         "userforms",
@@ -21,7 +23,8 @@
         }
     ],
     "require": {
-        "silverstripe/framework": "~3.1"
+        "silverstripe/framework": "~3.1",
+        "silverstripe/cms": "~3.1"
     },
     "extra": {
         "installer-name": "datefield_simplified"
