@@ -26,7 +26,7 @@ class SimpleDateField extends DateField
      * The PHP date function formatting for showing the final date.
      * @var String
      */
-    private static $default_fancy_date_format = 'D j F Y';
+    private static $default_fancy_date_format = 'j F Y';
 
     /**
      * What would you like the place holder value to be?
