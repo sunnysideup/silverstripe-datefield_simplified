@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<source xmlns="http://xml.phpdox.net/src">
-  <dir name="/var/www/_modules/datefield_simplified/trunk">
-    <file name="_config.php" size="68" time="2015-03-14T10:22:23+13:00" unixtime="1426281743" sha1="b90439e12b175a4fd32acdd8ef05671c40e9b9be" xml="tokens/_config.php.xml"/>
-    <dir name="code">
-      <file name="SimpleDateField.php" size="7957" time="2015-03-14T10:22:23+13:00" unixtime="1426281743" sha1="1a64e6a57b302860d2757866cf4f4d05a95363a9" xml="tokens/code/SimpleDateField.php.xml"/>
-    </dir>
-  </dir>
-</source>
