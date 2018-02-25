@@ -52,12 +52,14 @@ class SimpleDateField extends DateField
         $fieldID = $this->id();
         $url = Convert::raw2js(Director::absoluteBaseURL().Config::inst()->get("SimpleDateField_Controller", "url")."/ajaxvalidation/");
         $objectID = $fieldID."_OBJECT";
-        Requirements::customScript("
+        Requirements::customScript(
+            "
 			var $objectID = new SimpleDateFieldAjaxValidationAPI('".$fieldID."');
 			$objectID.init();
 			$objectID.setVar('url', '$url');
 			",
-            'func_SimpleDateField'.$fieldID);
+            'func_SimpleDateField'.$fieldID
+        );
         return $html;
     }
 
