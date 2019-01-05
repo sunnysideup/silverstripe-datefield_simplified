@@ -1,5 +1,21 @@
 <?php
 
+namespace Sunnysideup\DatefieldSimplified;
+
+use DateField;
+use Requirements;
+use Convert;
+use Director;
+use Config;
+use Controller;
+use Injector;
+use EditableFormField;
+use FieldList;
+use FieldGroup;
+use CheckboxField;
+use TextField;
+
+
 /**
  * @author nicolaas [at] sunnysideup.co.nz
  * To Do:
