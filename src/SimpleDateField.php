@@ -1,5 +1,35 @@
 <?php
 
+namespace Sunnysideup\DatefieldSimplified;
+
+
+
+
+
+
+
+
+use EditableFormField;
+
+
+
+
+use SilverStripe\View\Requirements;
+use SilverStripe\Control\Director;
+use SilverStripe\Core\Config\Config;
+use Sunnysideup\DatefieldSimplified\SimpleDateField_Controller;
+use SilverStripe\Core\Convert;
+use SilverStripe\Forms\DateField;
+use SilverStripe\Core\Injector\Injector;
+use Sunnysideup\DatefieldSimplified\SimpleDateField;
+use SilverStripe\Control\Controller;
+use SilverStripe\Forms\CheckboxField;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\FieldGroup;
+use SilverStripe\Forms\FieldList;
+
+
+
 /**
  * @author nicolaas [at] sunnysideup.co.nz
  * To Do:
@@ -44,13 +74,13 @@ class SimpleDateField extends DateField
     public function Field($options = array())
     {
         //GENERAL
-        Requirements::javascript(THIRDPARTY_DIR . '/jquery/jquery.js');
-        Requirements::javascript("datefield_simplified/javascript/SimpleDateField.js");
+        Requirements::javascript('silverstripe/admin: thirdparty/jquery/jquery.js');
+        Requirements::javascript("sunnysideup/datefield_simplified: datefield_simplified/javascript/SimpleDateField.js");
         $this->addExtraClass("simpledatefield");
         $this->setAttribute("placeholder", $this->Config()->get("placeholder_value"));
         $html = parent::Field($options);
         $fieldID = $this->id();
-        $url = Convert::raw2js(Director::absoluteBaseURL().Config::inst()->get("SimpleDateField_Controller", "url")."/ajaxvalidation/");
+        $url = Convert::raw2js(Director::absoluteBaseURL().Config::inst()->get(SimpleDateField_Controller::class, "url")."/ajaxvalidation/");
         $objectID = $fieldID."_OBJECT";
         Requirements::customScript(
             "
@@ -177,7 +207,7 @@ class SimpleDateField_Controller extends Controller
         if (isset($_GET["value"])) {
             $rawInput = ($_GET["value"]);
         }
-        $obj = Injector::inst()->get("SimpleDateField", $asSingleton = true, array("temp", "temp"));
+        $obj = Injector::inst()->get(SimpleDateField::class, $asSingleton = true, array("temp", "temp"));
         return $obj->ConverToFancyDate($rawInput);
     }
 }
@@ -239,18 +269,18 @@ class SimpleDateField_Editable extends EditableFormField
         }
         if ($this->getSetting('OnlyPastDates')) {
             $field->setConfig("max", "today");
-            Config::inst()->update("SimpleDateField", "placeholder_value", '31 jan 1974');
+            Config::inst()->update(SimpleDateField::class, "placeholder_value", '31 jan 1974');
         } elseif ($this->getSetting('OnlyFutureDates')) {
             $field->setConfig("min", "today");
-            Config::inst()->update("SimpleDateField", "placeholder_value", '31 jan 2023');
+            Config::inst()->update(SimpleDateField::class, "placeholder_value", '31 jan 2023');
         }
         if ($this->getSetting('MonthBeforeDay')) {
             $field->setConfig("dateformat", 'l F j Y');
-            Config::inst()->update("SimpleDateField", "default_fancy_date_format", 'l F j Y');
-            Config::inst()->update("SimpleDateField", "month_before_day", true);
+            Config::inst()->update(SimpleDateField::class, "default_fancy_date_format", 'l F j Y');
+            Config::inst()->update(SimpleDateField::class, "month_before_day", true);
         } else {
-            Config::inst()->update("SimpleDateField", "default_fancy_date_format", 'l j F Y');
-            Config::inst()->update("SimpleDateField", "month_before_day", false);
+            Config::inst()->update(SimpleDateField::class, "default_fancy_date_format", 'l j F Y');
+            Config::inst()->update(SimpleDateField::class, "month_before_day", false);
         }
         if ($this->getSetting('ExplanationForEnteringDates')) {
             $field->setRightTitle($this->getSetting('ExplanationForEnteringDates'));

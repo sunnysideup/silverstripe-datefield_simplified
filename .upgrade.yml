@@ -1,0 +1,4 @@
+mappings:
+  SimpleDateField: Sunnysideup\DatefieldSimplified\SimpleDateField
+  SimpleDateField_Controller: Sunnysideup\DatefieldSimplified\SimpleDateField_Controller
+  SimpleDateField_Editable: Sunnysideup\DatefieldSimplified\SimpleDateField_Editable

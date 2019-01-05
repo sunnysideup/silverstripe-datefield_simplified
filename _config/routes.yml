@@ -2,6 +2,6 @@
 Name: simpledatefield
 After: '#adminroutes'
 ---
-Director:
+SilverStripe\Control\Director:
   rules:
     'formfields-simpledatefield//$Action/$Value': 'SimpleDateField_Controller'
