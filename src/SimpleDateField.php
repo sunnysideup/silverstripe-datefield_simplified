@@ -45,7 +45,7 @@ class SimpleDateField extends DateField
     {
         //GENERAL
         Requirements::javascript('silverstripe/admin: thirdparty/jquery/jquery.js');
-        Requirements::javascript("datefield_simplified/javascript/SimpleDateField.js");
+        Requirements::javascript("sunnysideup/datefield_simplified: datefield_simplified/javascript/SimpleDateField.js");
         $this->addExtraClass("simpledatefield");
         $this->setAttribute("placeholder", $this->Config()->get("placeholder_value"));
         $html = parent::Field($options);
