@@ -44,7 +44,7 @@ class SimpleDateField extends DateField
     public function Field($options = array())
     {
         //GENERAL
-        Requirements::javascript(THIRDPARTY_DIR . '/jquery/jquery.js');
+        Requirements::javascript('silverstripe/admin: thirdparty/jquery/jquery.js');
         Requirements::javascript("datefield_simplified/javascript/SimpleDateField.js");
         $this->addExtraClass("simpledatefield");
         $this->setAttribute("placeholder", $this->Config()->get("placeholder_value"));
