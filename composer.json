@@ -1,6 +1,6 @@
 {
     "name": "sunnysideup/datefield_simplified",
-    "type": "silverstripe-module",
+    "type": "silverstripe-vendormodule",
     "description": "simple date field",
     "keywords": [
         "Silverstripe-CMS",
