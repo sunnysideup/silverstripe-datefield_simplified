@@ -2,18 +2,6 @@
 
 namespace Sunnysideup\DatefieldSimplified;
 
-
-
-
-
-
-
-
-use EditableFormField;
-
-
-
-
 use SilverStripe\View\Requirements;
 use SilverStripe\Control\Director;
 use SilverStripe\Core\Config\Config;
@@ -27,8 +15,6 @@ use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\FieldGroup;
 use SilverStripe\Forms\FieldList;
-
-
 
 /**
  * @author nicolaas [at] sunnysideup.co.nz
@@ -84,10 +70,10 @@ class SimpleDateField extends DateField
         $objectID = $fieldID."_OBJECT";
         Requirements::customScript(
             "
-			var $objectID = new SimpleDateFieldAjaxValidationAPI('".$fieldID."');
-			$objectID.init();
-			$objectID.setVar('url', '$url');
-			",
+            var $objectID = new SimpleDateFieldAjaxValidationAPI('".$fieldID."');
+            $objectID.init();
+            $objectID.setVar('url', '$url');
+            ",
             'func_SimpleDateField'.$fieldID
         );
         return $html;
@@ -98,7 +84,7 @@ class SimpleDateField extends DateField
      *
      * @param String|Array $val
      */
-    public function setValue($val)
+    public function setValue($val, $data = null)
     {
         $date = $this->ConvertToTSorERROR($val);
         if (is_numeric($date)  && intval($date) == $date && $date > 0) {
@@ -209,82 +195,5 @@ class SimpleDateField_Controller extends Controller
         }
         $obj = Injector::inst()->get(SimpleDateField::class, $asSingleton = true, array("temp", "temp"));
         return $obj->ConverToFancyDate($rawInput);
-    }
-}
-
-
-class SimpleDateField_Editable extends EditableFormField
-{
-    private static $db = array(
-        "ShowCalendar" => "Boolean",
-        "OnlyPastDates" => "Boolean",
-        "OnlyFutureDates" => "Boolean",
-        "MonthBeforeDay" => "Boolean",
-        "ExplanationForEnteringDates" => "Varchar(120)"
-    );
-
-    private static $singular_name = 'Simple Date Field';
-
-    private static $plural_name = 'Simple Date Fields';
-
-    public function Icon()
-    {
-        return 'userforms/images/editabledatefield.png';
-    }
-
-    public function canEdit($member = null)
-    {
-        return true;
-    }
-
-    public function getFieldConfiguration()
-    {
-        $fields = parent::getFieldConfiguration();
-        // eventually replace hard-coded "Fields"?
-        $baseName = "Fields[$this->ID]";
-        $ShowCalendar = ($this->getSetting('ShowCalendar')) ? $this->getSetting('ShowCalendar') : '0';
-        $OnlyPastDates = ($this->getSetting('OnlyPastDates')) ? $this->getSetting('OnlyPastDates') : '0';
-        $OnlyFutureDates = ($this->getSetting('OnlyFutureDates')) ? $this->getSetting('OnlyFutureDates') : '0';
-        $MonthBeforeDay = ($this->getSetting('MonthBeforeDay')) ? $this->getSetting('MonthBeforeDay') : '0';
-        $ExplanationForEnteringDates = ($this->getSetting('ExplanationForEnteringDates')) ? $this->getSetting('ExplanationForEnteringDates') : '';
-        $extraFields = new FieldList(
-            new FieldGroup(
-                _t('SimpleDateField_Editable.DATESETTINGS', 'Date Settings'),
-                new CheckboxField($baseName . "[CustomSettings][ShowCalendar]", "Show Calendar", $ShowCalendar),
-                new CheckboxField($baseName . "[CustomSettings][OnlyPastDates]", "Only Past Dates?", $OnlyPastDates),
-                new CheckboxField($baseName . "[CustomSettings][OnlyFutureDates]", "Only Future Dates?", $OnlyFutureDates),
-                new CheckboxField($baseName . "[CustomSettings][MonthBeforeDay]", "Month before day (e.g. Jan 11 2011)?", $MonthBeforeDay),
-                new TextField($baseName . "[CustomSettings][ExplanationForEnteringDates]", "Explanation for entering dates", $ExplanationForEnteringDates)
-            )
-        );
-        $fields->merge($extraFields);
-        return $fields;
-    }
-
-    public function getFormField()
-    {
-        $field = new SimpleDateField($this->Name, $this->Title);
-        if ($this->getSetting('ShowCalendar')) {
-            $field->setConfig("showcalendar", true);
-        }
-        if ($this->getSetting('OnlyPastDates')) {
-            $field->setConfig("max", "today");
-            Config::inst()->update(SimpleDateField::class, "placeholder_value", '31 jan 1974');
-        } elseif ($this->getSetting('OnlyFutureDates')) {
-            $field->setConfig("min", "today");
-            Config::inst()->update(SimpleDateField::class, "placeholder_value", '31 jan 2023');
-        }
-        if ($this->getSetting('MonthBeforeDay')) {
-            $field->setConfig("dateformat", 'l F j Y');
-            Config::inst()->update(SimpleDateField::class, "default_fancy_date_format", 'l F j Y');
-            Config::inst()->update(SimpleDateField::class, "month_before_day", true);
-        } else {
-            Config::inst()->update(SimpleDateField::class, "default_fancy_date_format", 'l j F Y');
-            Config::inst()->update(SimpleDateField::class, "month_before_day", false);
-        }
-        if ($this->getSetting('ExplanationForEnteringDates')) {
-            $field->setRightTitle($this->getSetting('ExplanationForEnteringDates'));
-        }
-        return $field;
     }
 }
