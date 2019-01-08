@@ -8,7 +8,7 @@ use SilverStripe\UserForms\Model\EditableFormField;
 use SilverStripe\View\Requirements;
 use SilverStripe\Control\Director;
 use SilverStripe\Core\Config\Config;
-use Sunnysideup\DatefieldSimplified\SimpleDateField_Controller;
+use Sunnysideup\DatefieldSimplified\SimpleDateFieldController;
 use SilverStripe\Core\Convert;
 use SilverStripe\Forms\DateField;
 use SilverStripe\Core\Injector\Injector;

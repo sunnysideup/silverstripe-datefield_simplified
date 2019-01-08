@@ -4,4 +4,4 @@ After: '#adminroutes'
 ---
 SilverStripe\Control\Director:
   rules:
-    'formfields-simpledatefield//$Action/$Value': 'SimpleDateField_Controller'
+    'formfields-simpledatefield//$Action/$Value': 'Sunnysideup\DatefieldSimplified\SimpleDateFieldController'
