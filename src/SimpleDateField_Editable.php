@@ -4,7 +4,6 @@
 namespace Sunnysideup\DatefieldSimplified;
 
 use SilverStripe\UserForms\Model\EditableFormField;
-
 use SilverStripe\View\Requirements;
 use SilverStripe\Control\Director;
 use SilverStripe\Core\Config\Config;
@@ -18,9 +17,6 @@ use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\FieldGroup;
 use SilverStripe\Forms\FieldList;
-
-
-
 use SilverStripe\Control\Email\Email;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\LiteralField;

@@ -5,7 +5,7 @@ namespace Sunnysideup\DatefieldSimplified;
 use SilverStripe\View\Requirements;
 use SilverStripe\Control\Director;
 use SilverStripe\Core\Config\Config;
-use Sunnysideup\DatefieldSimplified\SimpleDateField_Controller;
+use Sunnysideup\DatefieldSimplified\SimpleDateFieldController;
 use SilverStripe\Core\Convert;
 use SilverStripe\Forms\DateField;
 use SilverStripe\Core\Injector\Injector;
@@ -66,7 +66,7 @@ class SimpleDateField extends DateField
         $this->setAttribute("placeholder", $this->Config()->get("placeholder_value"));
         $html = parent::Field($options);
         $fieldID = $this->id();
-        $url = Convert::raw2js(Director::absoluteBaseURL().Config::inst()->get(SimpleDateField_Controller::class, "url")."/ajaxvalidation/");
+        $url = Convert::raw2js(Director::absoluteBaseURL().Config::inst()->get(SimpleDateFieldController::class, "url")."/ajaxvalidation/");
         $objectID = $fieldID."_OBJECT";
         Requirements::customScript(
             "
@@ -170,30 +170,5 @@ class SimpleDateField extends DateField
             );
         }
         return Convert::raw2json($array);
-    }
-}
-
-
-class SimpleDateField_Controller extends Controller
-{
-    private static $allowed_actions = array(
-        "ajaxvalidation" => true
-    );
-
-    private static $url = 'formfields-simpledatefield';
-
-    /**
-     *
-     * @param HTTPRequest
-     * @return String (JSON)
-     */
-    public function ajaxvalidation($request)
-    {
-        $rawInput = '';
-        if (isset($_GET["value"])) {
-            $rawInput = ($_GET["value"]);
-        }
-        $obj = Injector::inst()->get(SimpleDateField::class, $asSingleton = true, array("temp", "temp"));
-        return $obj->ConverToFancyDate($rawInput);
     }
 }
