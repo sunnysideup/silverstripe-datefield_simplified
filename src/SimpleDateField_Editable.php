@@ -95,7 +95,7 @@ class SimpleDateField_Editable extends EditableFormField
             Config::inst()->update(SimpleDateField::class, "month_before_day", false);
         }
         if ($this->getSetting('ExplanationForEnteringDates')) {
-            $field->setRightTitle($this->getSetting('ExplanationForEnteringDates'));
+            $field->setDescription($this->getSetting('ExplanationForEnteringDates'));
         }
         return $field;
     }
