@@ -81,18 +81,18 @@ class SimpleDateField_Editable extends EditableFormField
         }
         if ($this->getSetting('OnlyPastDates')) {
             $field->setConfig("max", "today");
-            Config::inst()->update(SimpleDateField::class, "placeholder_value", '31 jan 1974');
+            Config::modify()->update(SimpleDateField::class, "placeholder_value", '31 jan 1974');
         } elseif ($this->getSetting('OnlyFutureDates')) {
             $field->setConfig("min", "today");
-            Config::inst()->update(SimpleDateField::class, "placeholder_value", '31 jan 2023');
+            Config::modify()->update(SimpleDateField::class, "placeholder_value", '31 jan 2023');
         }
         if ($this->getSetting('MonthBeforeDay')) {
             $field->setConfig("dateformat", 'l F j Y');
-            Config::inst()->update(SimpleDateField::class, "default_fancy_date_format", 'l F j Y');
-            Config::inst()->update(SimpleDateField::class, "month_before_day", true);
+            Config::modify()->update(SimpleDateField::class, "default_fancy_date_format", 'l F j Y');
+            Config::modify()->update(SimpleDateField::class, "month_before_day", true);
         } else {
-            Config::inst()->update(SimpleDateField::class, "default_fancy_date_format", 'l j F Y');
-            Config::inst()->update(SimpleDateField::class, "month_before_day", false);
+            Config::modify()->update(SimpleDateField::class, "default_fancy_date_format", 'l j F Y');
+            Config::modify()->update(SimpleDateField::class, "month_before_day", false);
         }
         if ($this->getSetting('ExplanationForEnteringDates')) {
             $field->setDescription($this->getSetting('ExplanationForEnteringDates'));
