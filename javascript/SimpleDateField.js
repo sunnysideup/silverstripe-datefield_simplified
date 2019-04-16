@@ -75,7 +75,7 @@ var SimpleDateFieldAjaxValidationAPI = function(fieldName) {
 				}
 			)
 			.fail(function() {
-				jQuery("#" + id).attr("value","?").focus();
+				jQuery("#" + id).attr("value","").focus();
 				jQuery("label[for='"+id+"'].right").text("???");
 			})
 			;
