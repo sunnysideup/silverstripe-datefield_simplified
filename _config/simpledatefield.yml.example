@@ -1,4 +1,4 @@
-DateField:
+SilverStripe\Forms\DateField:
   config:
     showcalendar: false
     jslocale: null
@@ -9,6 +9,7 @@ DateField:
     datavalueformat: yyyy-MM-dd
     min: null
     max: null
-SimpleDateField:
+    
+Sunnysideup\DatefieldSimplified\SimpleDateField:
   month_before_day: false
   default_fancy_date_format: 'l j F Y'
