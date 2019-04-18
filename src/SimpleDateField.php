@@ -48,7 +48,7 @@ class SimpleDateField extends DateField
      * What would you like the place holder value to be?
      * @var String
      */
-    private static $placeholder_value = '31 jan 2123';
+    private static $placeholder_value = '9 nov 1989';
 
     public function __construct($name, $title = null, $value = null, $form = null, $config = array())
     {
@@ -87,7 +87,7 @@ class SimpleDateField extends DateField
     public function setValue($val, $data = null)
     {
         $date = $this->ConvertToTSorERROR($val);
-        if (is_numeric($date)  && intval($date) == $date && $date > 0) {
+        if (is_numeric($date)  && intval($date) == $date) {
             $val = date("Y-m-d", $date);
         } else {
             $val = null;
