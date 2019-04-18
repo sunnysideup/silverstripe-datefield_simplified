@@ -32,7 +32,7 @@ class SimpleDateField extends DateField
      * What would you like the place holder value to be?
      * @var String
      */
-    private static $placeholder_value = '31 jan 2123';
+    private static $placeholder_value = '31 jan 1990';
 
     public function __construct($name, $title = null, $value = null, $form = null, $config = array())
     {
@@ -54,10 +54,10 @@ class SimpleDateField extends DateField
         $objectID = $fieldID."_OBJECT";
         Requirements::customScript(
             "
-			var $objectID = new SimpleDateFieldAjaxValidationAPI('".$fieldID."');
-			$objectID.init();
-			$objectID.setVar('url', '$url');
-			",
+            var $objectID = new SimpleDateFieldAjaxValidationAPI('".$fieldID."');
+            $objectID.init();
+            $objectID.setVar('url', '$url');
+            ",
             'func_SimpleDateField'.$fieldID
         );
         return $html;
@@ -71,7 +71,8 @@ class SimpleDateField extends DateField
     public function setValue($val)
     {
         $date = $this->ConvertToTSorERROR($val);
-        if (is_numeric($date)  && intval($date) == $date && $date > 0) {
+        //NB: date can be smaller can 0 (i.e. before 1970)
+        if (is_numeric($date)  && intval($date) == $date) {
             $val = date("Y-m-d", $date);
         } else {
             $val = null;
