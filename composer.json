@@ -1,33 +1,33 @@
 {
-    "name": "sunnysideup/datefield_simplified",
-    "type": "silverstripe-vendormodule",
-    "description": "simple date field",
-    "keywords": [
-        "Silverstripe-CMS",
-        "CMS",
-        "Silverstripe",
-        "datefield_simplified",
-        "date field",
-        "datefield",
-        "userforms",
-        "strtotime",
-        "date picker",
-        "dob"
-    ],
-    "license": "BSD-3-Clause",
-    "authors": [
-        {
-            "name": "Nicolaas Francken",
-            "email": "modules@sunnysideup.co.nz",
-            "role": "lead developer"
-        }
-    ],
-    "require": {
-        "silverstripe/recipe-cms": "^4.0 || ^5.0"
-    },
-    "extra": {
-        "expose": [
-            "client"
-        ]
+  "name": "sunnysideup/datefield_simplified",
+  "type": "silverstripe-vendormodule",
+  "description": "simple date field",
+  "keywords": [
+    "Silverstripe-CMS",
+    "CMS",
+    "Silverstripe",
+    "datefield_simplified",
+    "date field",
+    "datefield",
+    "userforms",
+    "strtotime",
+    "date picker",
+    "dob"
+  ],
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "Nicolaas Francken",
+      "email": "modules@sunnysideup.co.nz",
+      "role": "lead developer"
     }
+  ],
+  "require": {
+    "silverstripe/recipe-cms": "^4.0 || ^5.0"
+  },
+  "extra": {
+    "expose": [
+      "client"
+    ]
+  }
 }
